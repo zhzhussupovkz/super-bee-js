@@ -1,11 +1,21 @@
-Bee = function(x, y) {
-  this.x = x;
-  this.y = y;
-  this.entity = Crafty.e("2D, DOM, Image, Fourway")
-  .attr({x: this.x, y: this.y })
-  .image("images/bee.png");
-}
+Crafty.c("Bee", {
+  init: function() {
+    this.attr({
+      x: 0,
+      y: 0,
+      img: null
+    });
+  },
 
-Bee.prototype.update = function() {
-  this.entity.fourway(5);
-}
+  go: function(cx, cy) {
+    this.attr({
+      x: cx,
+      y: cy,
+      img: Crafty.e("2D, DOM, Image, Fourway")
+      .attr({x: cx, y: cy })
+      .image("images/bee.png")
+      .fourway(5)
+    });
+    return this;
+  }
+});
